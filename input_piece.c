@@ -6,7 +6,7 @@
 /*   By: nwhitlow <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 12:09:43 by nwhitlow          #+#    #+#             */
-/*   Updated: 2019/05/21 16:32:01 by nwhitlow         ###   ########.fr       */
+/*   Updated: 2019/05/21 16:44:08 by nwhitlow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ static t_piece	*read_piece_header(char *line)
 	int		width;
 	int		height;
 
-	if (!piece)
-		return (NULL);
 	if (!ft_strnequ(line, "Piece", 5))
 		return (NULL);
 	height = ft_pop_atoi(line + 5);
