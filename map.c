@@ -6,7 +6,7 @@
 /*   By: nwhitlow <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 12:22:43 by nwhitlow          #+#    #+#             */
-/*   Updated: 2019/05/21 13:46:15 by nwhitlow         ###   ########.fr       */
+/*   Updated: 2019/05/21 16:32:55 by nwhitlow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	fill_map(t_map *map, int value)
 	}
 }
 
-t_map	*new_map(int width, int height)
+t_map		*new_map(int width, int height)
 {
 	t_map *map;
 
@@ -40,7 +40,7 @@ t_map	*new_map(int width, int height)
 		return (NULL);
 	map->width = width;
 	map->height = height;
-	map->data = (int *)malloc((size_t) width * height * sizeof(int));
+	map->data = (int *)malloc((size_t)width * height * sizeof(int));
 	if (!(map->data))
 	{
 		free(map);
@@ -50,7 +50,7 @@ t_map	*new_map(int width, int height)
 	return (map);
 }
 
-int	map_set(t_map *map, int x, int y, int value)
+int			map_set(t_map *map, int x, int y, int value)
 {
 	if (!map || !(map->data))
 		return (0);
@@ -62,10 +62,11 @@ int	map_set(t_map *map, int x, int y, int value)
 	return (1);
 }
 
-void	display_map(t_map *map)
+void		display_map(t_map *map)
 {
-	int x;
-	int y;
+	int		x;
+	int		y;
+	char	c;
 
 	if (!map)
 	{
@@ -78,7 +79,7 @@ void	display_map(t_map *map)
 		x = 0;
 		while (x < map->width)
 		{
-			char c = map->data[y * map->width + x];
+			c = map->data[y * map->width + x];
 			write(1, &c, 1);
 			x++;
 		}

@@ -6,7 +6,7 @@
 /*   By: nwhitlow <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 12:22:43 by nwhitlow          #+#    #+#             */
-/*   Updated: 2019/05/21 15:37:30 by nwhitlow         ###   ########.fr       */
+/*   Updated: 2019/05/21 16:33:11 by nwhitlow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	fill_piece(t_piece *piece, int value)
 	}
 }
 
-t_piece	*new_piece(int width, int height)
+t_piece		*new_piece(int width, int height)
 {
 	t_piece *piece;
 
@@ -40,7 +40,7 @@ t_piece	*new_piece(int width, int height)
 		return (NULL);
 	piece->width = width;
 	piece->height = height;
-	piece->data = (char *)malloc((size_t) width * height * sizeof(char));
+	piece->data = (char *)malloc((size_t)width * height * sizeof(char));
 	if (!(piece->data))
 	{
 		free(piece);
