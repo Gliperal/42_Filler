@@ -6,7 +6,7 @@
 /*   By: nwhitlow <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 11:19:46 by nwhitlow          #+#    #+#             */
-/*   Updated: 2019/05/22 14:20:42 by nwhitlow         ###   ########.fr       */
+/*   Updated: 2019/05/22 14:49:35 by nwhitlow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,9 @@ int			map_calculate(t_map *map, t_piece *piece, int best_move[2])
 	heatmap(maps[ENEMY_MAP], 1);
 	mc(maps, piece, best_move, legal_moves);
 	free(legal_moves);
+	free(maps[HOME_MAP]->data);
 	free(maps[HOME_MAP]);
+	free(maps[ENEMY_MAP]->data);
 	free(maps[ENEMY_MAP]);
 	return (0);
 }
