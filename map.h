@@ -6,7 +6,7 @@
 /*   By: nwhitlow <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/20 21:37:24 by nwhitlow          #+#    #+#             */
-/*   Updated: 2019/05/21 21:08:26 by nwhitlow         ###   ########.fr       */
+/*   Updated: 2019/05/22 14:27:43 by nwhitlow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ typedef struct	s_map
 
 t_map			*new_map(int width, int height);
 int				map_set(t_map *map, int x, int y, int value);
-void			display_map(t_map *map);
 int				map_value_at(t_map *map, int x, int y);
 void			map_cpy(t_map *dst, t_map *src);
+void			map_display(t_map *map);
 
 #endif

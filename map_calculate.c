@@ -6,23 +6,11 @@
 /*   By: nwhitlow <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 11:19:46 by nwhitlow          #+#    #+#             */
-/*   Updated: 2019/05/22 14:08:04 by nwhitlow         ###   ########.fr       */
+/*   Updated: 2019/05/22 14:20:42 by nwhitlow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-
-#include "map.h"
-#include "piece.h"
-
-void	game_legal_moves(t_map *map, t_piece *piece, int (**legal_moves)[2]);
-void	game_move(t_map *map, t_piece *piece, int move[2]);
-void	heatmap(t_map *map, int enemy);
-
-// TODO Move to header file
-#define BASE_MAP 0
-#define HOME_MAP 1
-#define ENEMY_MAP 2
+#include "filler.h"
 
 static int	evaluate_move(t_map *maps[3], t_piece *piece, int move[2])
 {

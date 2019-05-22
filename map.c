@@ -6,15 +6,14 @@
 /*   By: nwhitlow <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 12:22:43 by nwhitlow          #+#    #+#             */
-/*   Updated: 2019/05/21 21:16:47 by nwhitlow         ###   ########.fr       */
+/*   Updated: 2019/05/22 14:25:31 by nwhitlow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <unistd.h>
 
-#include "libft.h"
 #include "map.h"
+#include "libft/libft.h"
 
 static void	fill_map(t_map *map, int value)
 {
@@ -87,33 +86,4 @@ void		map_cpy(t_map *dst, t_map *src)
 	if (dst->height != src->height)
 		return ;
 	ft_memcpy(dst->data, src->data, src->width * src->height * sizeof(int));
-}
-
-void		display_map(t_map *map)
-{
-	int		x;
-	int		y;
-
-	if (!map)
-	{
-		write(1, "(null)\n", 7);
-		return ;
-	}
-	y = 0;
-	while (y < map->height)
-	{
-		x = 0;
-		while (x < map->width)
-		{
-			if(map->data[y * map->width + x] == HOME)
-				write(1, "@", 1);
-			else if(map->data[y * map->width + x] == ENEMY)
-				write(1, "#", 1);
-			else
-				write(1, ".", 1);
-			x++;
-		}
-		write(1, "\n", 1);
-		y++;
-	}
 }

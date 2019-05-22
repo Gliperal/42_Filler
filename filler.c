@@ -6,22 +6,16 @@
 /*   By: nwhitlow <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 12:09:43 by nwhitlow          #+#    #+#             */
-/*   Updated: 2019/05/22 13:51:48 by nwhitlow         ###   ########.fr       */
+/*   Updated: 2019/05/22 14:28:17 by nwhitlow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include "map.h"
-#include "piece.h"
+#include "filler.h"
 
 // TODO Remove (replace with stdin)
 #include <unistd.h>
 #include <fcntl.h>
 #include <stdio.h>
-
-t_map	*input_map(int fd, char **line);
-t_piece	*input_piece(int fd, char *header);
-int		map_calculate(t_map *map, t_piece *piece, int best_move[2]);
 
 int	main()
 {
@@ -38,7 +32,7 @@ int	main()
 	printf("end\n");
 	printf("Player #%d\n", map->player);
 	printf("map %dx%d\n", map->width, map->height);
-	display_map(map);
+	map_display(map);
 	printf("Piece %dx%x\n", piece->width, piece->height);
 	for(int y = 0; y < piece->height; y++)
 	{

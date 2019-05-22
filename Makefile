@@ -6,6 +6,7 @@ CSRC=filler.c \
 	input_map.c \
 	input_piece.c \
 	map.c \
+	map_display.c \
 	map_calculate.c \
 	piece.c
 OBJS=filler.o \
@@ -14,6 +15,7 @@ OBJS=filler.o \
 	input_map.o \
 	input_piece.o \
 	map.o \
+	map_display.o \
 	map_calculate.o \
 	piece.o
 GCH=*.gch

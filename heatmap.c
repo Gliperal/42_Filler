@@ -6,22 +6,21 @@
 /*   By: nwhitlow <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 19:22:45 by nwhitlow          #+#    #+#             */
-/*   Updated: 2019/05/22 14:01:43 by nwhitlow         ###   ########.fr       */
+/*   Updated: 2019/05/22 14:17:03 by nwhitlow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// TODO Remove when not printing
 #include <unistd.h>
 
 #include "map.h"
 
-void	set_if_more(t_map *map, int x, int y, int value)
+static void	set_if_more(t_map *map, int x, int y, int value)
 {
 	if (map_value_at(map, x, y) > value)
 		map_set(map, x, y, value);
 }
 
-void	pass_horizontal(t_map *map, int dir)
+static void	pass_horizontal(t_map *map, int dir)
 {
 	int x;
 	int y;
@@ -41,7 +40,7 @@ void	pass_horizontal(t_map *map, int dir)
 	}
 }
 
-void	pass_vertical(t_map *map, int dir)
+static void	pass_vertical(t_map *map, int dir)
 {
 	int x;
 	int y;
@@ -61,33 +60,7 @@ void	pass_vertical(t_map *map, int dir)
 	}
 }
 
-void		display_heatmap(t_map *map)
-{
-	int		x;
-	int		y;
-	char	c;
-
-	y = 0;
-	while (y < map->height)
-	{
-		x = 0;
-		while (x < map->width)
-		{
-			if(map->data[y * map->width + x] < 0)
-				c = '.';
-			else if (map->data[y * map->width + x] < 10)
-				c = '0' + map->data[y * map->width + x];
-			else
-				c = 'a' - 10 + map->data[y * map->width + x];
-			write(1, &c, 1);
-			x++;
-		}
-		write(1, "\n", 1);
-		y++;
-	}
-}
-
-void	heatmap(t_map *map, int enemy)
+void		heatmap(t_map *map, int enemy)
 {
 	int i;
 	int sink;
@@ -106,4 +79,30 @@ void	heatmap(t_map *map, int enemy)
 	pass_horizontal(map, -1);
 	pass_vertical(map, 1);
 	pass_vertical(map, -1);
+}
+
+void		display_heatmap(t_map *map)
+{
+	int		x;
+	int		y;
+	char	c;
+
+	y = 0;
+	while (y < map->height)
+	{
+		x = 0;
+		while (x < map->width)
+		{
+			if (map->data[y * map->width + x] < 0)
+				c = '.';
+			else if (map->data[y * map->width + x] < 10)
+				c = '0' + map->data[y * map->width + x];
+			else
+				c = 'a' - 10 + map->data[y * map->width + x];
+			write(1, &c, 1);
+			x++;
+		}
+		write(1, "\n", 1);
+		y++;
+	}
 }
