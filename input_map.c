@@ -6,7 +6,7 @@
 /*   By: nwhitlow <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 12:09:43 by nwhitlow          #+#    #+#             */
-/*   Updated: 2019/05/21 16:31:43 by nwhitlow         ###   ########.fr       */
+/*   Updated: 2019/05/21 18:51:18 by nwhitlow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ static void		read_map_row(t_map *map, char *line)
 	int		row;
 	int		i;
 	char	*data;
+	int		value;
 
 	if (!ft_isdigit(*line))
 		return ;
@@ -68,12 +69,12 @@ static void		read_map_row(t_map *map, char *line)
 	i = 0;
 	while (data[i] && i < map->width)
 	{
-		if (data[i] == '.')
-			map_set(map, i, row, ',');
-		else if (data[i] == 'o' || data[i] == 'O')
-			map_set(map, i, row, '0');
+		value = EMPTY;
+		if (data[i] == 'o' || data[i] == 'O')
+			value = (map->player == 1) ? HOME : ENEMY;
 		else if (data[i] == 'x' || data[i] == 'X')
-			map_set(map, i, row, 'k');
+			value = (map->player == 1) ? ENEMY : HOME;
+		map_set(map, i, row, value);
 		i++;
 	}
 	free(data);

@@ -1,16 +1,19 @@
 CC=gcc
 CFLAGS=-Wall -Wextra -Werror
 CSRC=filler.c \
+	game.c \
 	input_map.c \
 	input_piece.c \
 	map.c \
 	piece.c
 OBJS=filler.o \
+	game.o \
 	input_map.o \
 	input_piece.o \
 	map.o \
 	piece.o
 GCH=*.gch
+RM=rm -rf
 LOGIN=nwhitlow
 NAME=$(LOGIN).filler
 
