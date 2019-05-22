@@ -6,7 +6,7 @@
 /*   By: nwhitlow <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 12:22:43 by nwhitlow          #+#    #+#             */
-/*   Updated: 2019/05/21 16:33:11 by nwhitlow         ###   ########.fr       */
+/*   Updated: 2019/05/22 13:37:33 by nwhitlow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,15 @@ t_piece		*new_piece(int width, int height)
 	}
 	fill_piece(piece, 0);
 	return (piece);
+}
+
+int			piece_value_at(t_piece *piece, int x, int y)
+{
+	if (!piece || !(piece->data))
+		return (0);
+	if (x < 0 || x >= piece->width)
+		return (0);
+	if (y < 0 || y >= piece->height)
+		return (0);
+	return (piece->data[y * piece->width + x]);
 }

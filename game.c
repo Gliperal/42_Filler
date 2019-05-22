@@ -6,7 +6,7 @@
 /*   By: nwhitlow <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 12:35:32 by nwhitlow          #+#    #+#             */
-/*   Updated: 2019/05/22 13:29:38 by nwhitlow         ###   ########.fr       */
+/*   Updated: 2019/05/22 13:43:56 by nwhitlow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static int	legal_move(t_map *map, t_piece *piece, int x, int y)
 	int connected;
 	int i;
 	int j;
+	int map_home;
 
 	connected = 0;
 	j = 0;
@@ -28,7 +29,8 @@ static int	legal_move(t_map *map, t_piece *piece, int x, int y)
 		i = 0;
 		while (i < piece->width)
 		{
-			if (piece->data[j * piece->width + i] && map_value_at(map, x + i, y + j) == HOME)
+			map_home = (map_value_at(map, x + i, y + j) == HOME);
+			if (piece_value_at(piece, i, j) && map_home)
 			{
 				if (connected)
 					return (0);
@@ -64,7 +66,49 @@ static int	count_legal_moves(t_map *map, t_piece *piece)
 	return (i);
 }
 
-void	game_move(t_map *map, t_piece *piece, int move[2])
+static void	fill_legal_moves(t_map *map, t_piece *piece, int (**moves)[2])
+{
+	int x;
+	int y;
+	int i;
+
+	y = 0 - map->width;
+	i = 0;
+	while (y < 0)
+	{
+		x = 0 - map->width;
+		while (x < 0)
+		{
+			if (legal_move(map, piece, x, y))
+			{
+				(*moves)[i][0] = x;
+				(*moves)[i][1] = y;
+				i++;
+			}
+			x++;
+		}
+		y++;
+	}
+	(*moves)[i][0] = 2147483647;
+}
+
+void		game_legal_moves(t_map *map, t_piece *piece, int (**moves)[2])
+{
+	int size;
+
+	size = count_legal_moves(map, piece);
+	if (size == 0)
+	{
+		*moves = NULL;
+		return ;
+	}
+	*moves = malloc(sizeof(int[size + 1][2]));
+	if (!(*moves))
+		return ;
+	fill_legal_moves(map, piece, moves);
+}
+
+void		game_move(t_map *map, t_piece *piece, int move[2])
 {
 	int x;
 	int y;
@@ -81,39 +125,4 @@ void	game_move(t_map *map, t_piece *piece, int move[2])
 		}
 		y++;
 	}
-}
-
-void	game_legal_moves(t_map *map, t_piece *piece, int (**legal_moves)[2])
-{
-	int x;
-	int y;
-	int i;
-
-	i = count_legal_moves(map, piece);
-	if (i == 0)
-	{
-		*legal_moves = NULL;
-		return ;
-	}
-	*legal_moves = malloc(sizeof(int[i + 1][2]));
-	if (!(*legal_moves))
-		return ;
-	y = 0 - map->width;
-	i = 0;
-	while (y < 0)
-	{
-		x = 0 - map->width;
-		while (x < 0)
-		{
-			if (legal_move(map, piece, x, y))
-			{
-				(*legal_moves)[i][0] = x;
-				(*legal_moves)[i][1] = y;
-				i++;
-			}
-			x++;
-		}
-		y++;
-	}
-	(*legal_moves)[i][0] = 2147483647;
 }

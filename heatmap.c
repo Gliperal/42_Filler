@@ -6,7 +6,7 @@
 /*   By: nwhitlow <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 19:22:45 by nwhitlow          #+#    #+#             */
-/*   Updated: 2019/05/21 21:15:45 by nwhitlow         ###   ########.fr       */
+/*   Updated: 2019/05/22 14:01:43 by nwhitlow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,6 @@ void	heatmap(t_map *map, int enemy)
 	int i;
 	int sink;
 
-	write(1, "heatmap\n", 8);
 	i = 0;
 	sink = enemy ? ENEMY : HOME;
 	while (i < map->width * map->height)

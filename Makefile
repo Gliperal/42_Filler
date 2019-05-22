@@ -2,15 +2,19 @@ CC=gcc
 CFLAGS=-Wall -Wextra -Werror
 CSRC=filler.c \
 	game.c \
+	heatmap.c \
 	input_map.c \
 	input_piece.c \
 	map.c \
+	map_calculate.c \
 	piece.c
 OBJS=filler.o \
 	game.o \
+	heatmap.o \
 	input_map.o \
 	input_piece.o \
 	map.o \
+	map_calculate.o \
 	piece.o
 GCH=*.gch
 RM=rm -rf

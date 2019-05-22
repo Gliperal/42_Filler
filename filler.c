@@ -6,7 +6,7 @@
 /*   By: nwhitlow <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 12:09:43 by nwhitlow          #+#    #+#             */
-/*   Updated: 2019/05/22 13:31:20 by nwhitlow         ###   ########.fr       */
+/*   Updated: 2019/05/22 13:51:48 by nwhitlow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,13 @@
 
 t_map	*input_map(int fd, char **line);
 t_piece	*input_piece(int fd, char *header);
-void	game_legal_moves(t_map *map, t_piece *piece, int (**legal_moves)[2]);
-void	game_move(t_map *map, t_piece *piece, int move[2]);
+int		map_calculate(t_map *map, t_piece *piece, int best_move[2]);
 
 int	main()
 {
 	char *line;
 
-	int fd = open("resources/sample_input", O_RDONLY);
+	int fd = open("resources/sample_input2", O_RDONLY);
 	t_map *map = input_map(fd, &line);
 	if (!map)
 		return (-1);
@@ -52,6 +51,10 @@ int	main()
 		}
 		write(1, "\n", 1);
 	}
+	int best_move[2];
+	map_calculate(map, piece, best_move);
+	printf("Best move: %d, %d\n", best_move[0], best_move[1]);
+	/*
 	int (*legal_moves)[2];
 	game_legal_moves(map, piece, &legal_moves);
 	t_map *map2 = new_map(map->width, map->height);
@@ -64,5 +67,6 @@ int	main()
 		display_map(map2);
 		i++;
 	}
+	*/
 	while (1) {}
 }
