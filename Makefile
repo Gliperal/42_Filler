@@ -5,6 +5,7 @@ CSRC=filler.c \
 	heatmap.c \
 	input_map.c \
 	input_piece.c \
+	input_player.c \
 	map.c \
 	map_display.c \
 	map_calculate.c \
@@ -14,6 +15,7 @@ OBJS=filler.o \
 	heatmap.o \
 	input_map.o \
 	input_piece.o \
+	input_player.o \
 	map.o \
 	map_display.o \
 	map_calculate.o \

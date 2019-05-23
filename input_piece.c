@@ -6,10 +6,11 @@
 /*   By: nwhitlow <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 12:09:43 by nwhitlow          #+#    #+#             */
-/*   Updated: 2019/05/21 16:44:08 by nwhitlow         ###   ########.fr       */
+/*   Updated: 2019/05/22 17:56:46 by nwhitlow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include <unistd.h>
 
 #include "libft/libft.h"
@@ -56,8 +57,14 @@ t_piece			*input_piece(int fd, char *header)
 	if (!piece)
 		return (NULL);
 	row = 0;
-	while (get_next_line(fd, &line) == 1)
+	while (row < piece->height)
 	{
+		if (get_next_line(fd, &line) != 1)
+		{
+			free(piece->data);
+			free(piece);
+			return (NULL);
+		}
 		read_piece_row(piece, line, row);
 		row++;
 		free(line);

@@ -6,7 +6,7 @@
 /*   By: nwhitlow <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 12:35:32 by nwhitlow          #+#    #+#             */
-/*   Updated: 2019/05/22 13:43:56 by nwhitlow         ###   ########.fr       */
+/*   Updated: 2019/05/22 18:16:03 by nwhitlow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	legal_move(t_map *map, t_piece *piece, int x, int y)
 	int connected;
 	int i;
 	int j;
-	int map_home;
+	int value;
 
 	connected = 0;
 	j = 0;
@@ -29,14 +29,13 @@ static int	legal_move(t_map *map, t_piece *piece, int x, int y)
 		i = 0;
 		while (i < piece->width)
 		{
-			map_home = (map_value_at(map, x + i, y + j) == HOME);
-			if (piece_value_at(piece, i, j) && map_home)
-			{
-				if (connected)
-					return (0);
-				else
-					connected = 1;
-			}
+			value = map_value_at(map, x + i, y + j);
+			if (value == ENEMY)
+				return (0);
+			if (piece_value_at(piece, i, j) && value == HOME)
+				connected++;
+			if (connected == 2)
+				return (0);
 			i++;
 		}
 		j++;
@@ -50,7 +49,7 @@ static int	count_legal_moves(t_map *map, t_piece *piece)
 	int y;
 	int i;
 
-	y = 0 - map->width;
+	y = 0 - map->height;
 	i = 0;
 	while (y < 0)
 	{
@@ -72,7 +71,7 @@ static void	fill_legal_moves(t_map *map, t_piece *piece, int (**moves)[2])
 	int y;
 	int i;
 
-	y = 0 - map->width;
+	y = 0 - map->height;
 	i = 0;
 	while (y < 0)
 	{

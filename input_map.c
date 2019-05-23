@@ -6,7 +6,7 @@
 /*   By: nwhitlow <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 12:09:43 by nwhitlow          #+#    #+#             */
-/*   Updated: 2019/05/21 18:51:18 by nwhitlow         ###   ########.fr       */
+/*   Updated: 2019/05/22 17:50:42 by nwhitlow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,6 @@
 
 #include "libft/libft.h"
 #include "map.h"
-
-static int		read_player(int fd)
-{
-	char	*line;
-	int		player;
-	int		status;
-
-	status = get_next_line(fd, &line);
-	if (status != 1)
-		return (0);
-	if (!ft_strnequ(line, "$$$ exec p", 10))
-		return (0);
-	player = line[10] - '0';
-	if (player < 1 || player > 2)
-		return (0);
-	free(line);
-	return (player);
-}
 
 static t_map	*read_map_header(int fd)
 {
@@ -80,14 +62,10 @@ static void		read_map_row(t_map *map, char *line)
 	free(data);
 }
 
-t_map			*input_map(int fd, char **line)
+t_map			*input_map(int fd, char **line, int player)
 {
-	int		player;
 	t_map	*map;
 
-	player = read_player(fd);
-	if (!player)
-		return (NULL);
 	map = read_map_header(fd);
 	if (!map)
 		return (NULL);

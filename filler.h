@@ -6,7 +6,7 @@
 /*   By: nwhitlow <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 14:19:08 by nwhitlow          #+#    #+#             */
-/*   Updated: 2019/05/22 14:24:06 by nwhitlow         ###   ########.fr       */
+/*   Updated: 2019/05/22 17:58:52 by nwhitlow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@
 # define HOME_MAP 1
 # define ENEMY_MAP 2
 
-t_map	*input_map(int fd, char **line);
+int		input_player(int fd);
+t_map	*input_map(int fd, char **line, int player);
 t_piece	*input_piece(int fd, char *header);
 int		map_calculate(t_map *map, t_piece *piece, int best_move[2]);
 void	game_legal_moves(t_map *map, t_piece *piece, int (**legal_moves)[2]);
