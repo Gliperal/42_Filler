@@ -6,7 +6,7 @@
 /*   By: nwhitlow <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 19:22:45 by nwhitlow          #+#    #+#             */
-/*   Updated: 2019/05/22 14:17:03 by nwhitlow         ###   ########.fr       */
+/*   Updated: 2019/05/24 10:43:45 by nwhitlow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,11 @@ static void	pass_vertical(t_map *map, int dir)
 	}
 }
 
-void		heatmap(t_map *map, int enemy)
+void		heatmap(t_map *map, int sink)
 {
 	int i;
-	int sink;
 
 	i = 0;
-	sink = enemy ? ENEMY : HOME;
 	while (i < map->width * map->height)
 	{
 		if (map->data[i] == sink)

@@ -6,7 +6,7 @@
 /*   By: nwhitlow <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 11:19:46 by nwhitlow          #+#    #+#             */
-/*   Updated: 2019/05/23 20:16:53 by nwhitlow         ###   ########.fr       */
+/*   Updated: 2019/05/24 10:42:36 by nwhitlow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	evaluate_move(t_map *maps[3], t_piece *piece, int move[2])
 	int i;
 
 	game_move(maps[HOME_MAP], piece, move);
-	heatmap(maps[HOME_MAP], 0);
+	heatmap(maps[HOME_MAP], HOME);
 	eval = 0;
 	i = 0;
 	while (i < maps[HOME_MAP]->width * maps[HOME_MAP]->height)
@@ -74,7 +74,7 @@ int			map_calculate(t_map *map, t_piece *piece, int best_move[2])
 	if (!legal_moves)
 		return (1);
 	map_cpy(maps[ENEMY_MAP], map);
-	heatmap(maps[ENEMY_MAP], 1);
+	heatmap(maps[ENEMY_MAP], ENEMY);
 	mc(maps, piece, best_move, legal_moves);
 	free(legal_moves);
 	free(maps[HOME_MAP]->data);
