@@ -6,7 +6,7 @@
 /*   By: nwhitlow <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 11:19:46 by nwhitlow          #+#    #+#             */
-/*   Updated: 2019/05/22 14:49:35 by nwhitlow         ###   ########.fr       */
+/*   Updated: 2019/05/23 20:16:53 by nwhitlow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	evaluate_move(t_map *maps[3], t_piece *piece, int move[2])
 	while (i < maps[HOME_MAP]->width * maps[HOME_MAP]->height)
 	{
 		if (maps[HOME_MAP]->data[i] && maps[ENEMY_MAP]->data[i])
-			if (maps[HOME_MAP]->data[i] < maps[ENEMY_MAP]->data[i])
+			if (maps[HOME_MAP]->data[i] + GREED < maps[ENEMY_MAP]->data[i])
 				eval++;
 		i++;
 	}

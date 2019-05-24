@@ -6,7 +6,7 @@
 /*   By: nwhitlow <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 14:19:08 by nwhitlow          #+#    #+#             */
-/*   Updated: 2019/05/22 17:58:52 by nwhitlow         ###   ########.fr       */
+/*   Updated: 2019/05/23 20:17:14 by nwhitlow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # define BASE_MAP 0
 # define HOME_MAP 1
 # define ENEMY_MAP 2
+
+# define GREED 0
 
 int		input_player(int fd);
 t_map	*input_map(int fd, char **line, int player);
