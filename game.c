@@ -6,7 +6,7 @@
 /*   By: nwhitlow <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 12:35:32 by nwhitlow          #+#    #+#             */
-/*   Updated: 2019/05/22 18:16:03 by nwhitlow         ###   ########.fr       */
+/*   Updated: 2019/05/23 19:23:47 by nwhitlow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,18 @@ static int	legal_move(t_map *map, t_piece *piece, int x, int y)
 		i = 0;
 		while (i < piece->width)
 		{
-			value = map_value_at(map, x + i, y + j);
-			if (value == ENEMY)
-				return (0);
-			if (piece_value_at(piece, i, j) && value == HOME)
-				connected++;
-			if (connected == 2)
-				return (0);
+			if (piece_value_at(piece, i, j))
+			{
+				value = map_value_at(map, x + i, y + j);
+				if (value == ENEMY)
+					return (0);
+				if (value == HOME)
+				{
+					if (connected)
+						return (0);
+					connected = 1;
+				}
+			}
 			i++;
 		}
 		j++;

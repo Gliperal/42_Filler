@@ -6,7 +6,7 @@
 /*   By: nwhitlow <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 12:09:43 by nwhitlow          #+#    #+#             */
-/*   Updated: 2019/05/22 17:58:29 by nwhitlow         ###   ########.fr       */
+/*   Updated: 2019/05/22 19:20:28 by nwhitlow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	main_b(int player)
 	return (0);
 }
 
-int main(void)
+int	main(void)
 {
 	int player;
 
